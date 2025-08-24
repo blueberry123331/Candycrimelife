@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>𝓒𝓪𝓷𝓭𝔂 Crimelife – #1 Crimelife Server</title>
+  <meta name="description" content="Offizielle Webseite von Candy Crimelife  – deinem Crimelife Server auf FiveM." />
+  <meta property="og:title" content="𝓒𝓪𝓷𝓭𝔂 Crimelife – FiveM Server" />
+  <meta property="og:description" content="Messe dich mit anderen und spiele mit uns auf Candy Crimelife." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://dummyimage.com/1200/630/f9a8d4/ffffff&text=Candy+Crimelife+RP" />
+  <meta name="theme-color" content="#f9a8d4" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- TailwindCSS CDN (for quick start) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui'] },
+          colors: {
+            brand: {
+              50: '#fdf2f8', 100: '#fce7f3', 200: '#fbcfe8', 300: '#f9a8d4',
+              400: '#f472b6', 500: '#ec4899', 600: '#db2777', 700: '#be185d',
+              800: '#9d174d', 900: '#831843'
+            }
+          }
+        }
+      },
+      darkMode: 'class'
+    }
+  </script>
+  <style>
+    :root { color-scheme: light dark; }
+    .glass { backdrop-filter: blur(8px); background: rgba(249, 168, 212, 0.7); }
+    .hero-grid { background-image: radial-gradient(ellipse at top, rgba(249, 168, 212, 0.2), transparent 60%),
+                                 radial-gradient(ellipse at bottom, rgba(252, 231, 243, 0.2), transparent 60%); }
+    .logo-container {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+    }
+    .countdown-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.5rem;
+      min-width: 60px;
+    }
+    .countdown-value {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ec4899;
+    }
+    .countdown-label {
+      font-size: 0.75rem;
+      color: #f472b6;
+      text-transform: uppercase;
+    }
+    .countdown-container {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      margin-top: 0.5rem;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 768px) {
+      .countdown-item {
+        min-width: 50px;
+        padding: 0.4rem;
+      }
+      .countdown-value {
+        font-size: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans selection:bg-brand-400/30 dark:bg-slate-900 dark:text-slate-100">
+  <!-- Config (edit these values) -->
+  <script>
+    const SERVER_NAME   = '𝓒𝓪𝓷𝓭𝔂 Crimelife';
+    const SERVER_IP     = '123.45.67.89'; // <- ändern
+    const SERVER_PORT   = '30120';        // <- ändern
+    const DISCORD_INV   = 'https://discord.gg/st8ddxH2ex'; // <- ändern
+    const TEAMSPEAK_URL = 'ts3server://your-ts?nickname=Crimelife%20RP'; // optional
+  </script>
+
+  <!-- Nav -->
+  <header class="fixed inset-x-0 top-0 z-50">
+    <nav class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="flex h-16 items-center justify-between rounded-b-2xl bg-white/90 glass px-4 shadow-sm dark:bg-slate-800/90">
+        <a href="#" class="flex items-center gap-3">
+          <!-- Rundes Logo auf der linken Seite -->
+          <div class="logo-container mr-2">
+            <img src="https://media.discordapp.net/attachments/1406203481571983445/1407745125706108928/1xZ8anW.gif?ex=68ab2cd0&is=68a9db50&hm=402ea27ea9cc6a57081467a0eff2b8cf8ad499dca1fc6cd4aae3b5be816f0f3c&=&width=231&height=231" 
+                 alt="Candy Crimelife Logo" 
+                 class="h-full w-full object-cover">
+          </div>
+          <span class="text-lg font-bold tracking-tight text-brand-700" id="navName">𝓒𝓪𝓷𝓭𝔂 Crimelife</span>
+        </a>
+        <div class="hidden md:flex items-center gap-6 text-sm text-slate-700 dark:text-slate-200">
+          <a href="#features" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Features</a>
+          <a href="#rules" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Regeln</a>
+          <a href="#whitelist" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Whitelist</a>
+          <a href="#team" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Team</a>
+          <a href="#faq" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">FAQ</a>
+        </div>
+        <div class="flex items-center gap-3">
+          <a id="connectBtn" class="hidden sm:inline-flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2 font-semibold shadow-lg hover:bg-brand-600 transition text-white" href="#">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15l5-5-5-5"/><path d="M4 20h7a4 4 0 0 0 4-4V4"/></svg>
+            Jetzt beitreten
+          </a>
+          <button id="themeToggle" class="inline-flex items-center gap-2 rounded-xl bg-white px-3 py-2 text-xs font-semibold hover:bg-gray-100 transition shadow-sm dark:bg-slate-700 dark:hover:bg-slate-600" aria-label="Theme wechseln">
+            <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 极.79z"/></svg>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="relative pt-28">
+    <div class="hero-grid absolute inset-0 -z-10"></div>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-2 items-center">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs text-brand-700 ring-1 ring-brand-200 shadow-sm">
+            <span class="inline-block h-2 w-2 animate-pulse rounded-full bg-brand-500"></span>
+            <span id="onlineStatus">Server online</span>
+          </div>
+          <h1 class="mt-4 text-4xl font-extrabold tracking-tight sm:text-5xl">
+            Willkommen auf <span class="text-brand-600" id="serverName">𝓒𝓪𝓷𝓭𝔂 Crimelife</span>
+          </h1>
+          <p class="mt-4 text-slate-600 dark:text-slate-300 max-w-prose">#1 𝓒𝓪𝓷𝓭𝔂 Crimelife Neu auf FiveM.</p>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a id="connectBtnHero" class="inline-flex items-center gap-2 rounded-2xl bg-brand-500 px-5 py-3 font-semib极 shadow-xl hover:bg-brand-600 transition text-white" href="#">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 15l5-5-5-5"/><path d="M4 20h7a4 4 0 0 0 4-4V4"/></svg>
+              Jetzt verbinden
+            </a>
+            <a target="_blank" rel="noopener" class="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 font-semibold hover:bg-gray-50 transition shadow-sm text-brand-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-white" href="#" id="discordLink">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0z"/><path d="M8 15h8M7 12h10M6 9h12"/></svg>
+              Discord
+            </a>
+            <button id="copyIp" class="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 font-semibold hover:bg-gray-50 transition shadow-sm text-brand-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-white">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              IP kopieren
+            </button>
+          </div>
+          <p class="mt-3 text-sm text-slate-500 dark:text-slate-400">IP: <span id="ipText" class="font-mono">123.45.67.89:30120</span></p>
+        </div>
+        <div class="relative">
+          <div class="aspect-[4/3] w-full overflow-hidden rounded-3xl border border-brand-200 bg-gradient-to-br from-white to-brand-50 shadow-2xl dark:border-slate-700 dark:from-slate-800 dark:to-slate-900">
+            <div class="absolute inset-0 grid grid-cols-3 gap-2 p-4 opacity-90">
+              <div class="rounded-2xl bg-brand-100 dark:bg-slate-700/50"></div>
+              <div class="rounded-2xl bg-brand-100 dark:bg-slate-700/50"></div>
+              <div class="rounded-2xl bg-brand-100 dark:bg-slate-700/50"></div>
+              <div class="col-span-2 rounded-2xl bg-brand-200 dark:bg-slate-700/50"></div>
+              <div class="rounded-2xl bg-brand-100 dark:bg-slate-700/50"></div>
+              <div class="rounded-2xl bg-brand-100 dark:bg-slate-700/50"></div>
+              <div class="col-span-2 rounded-2xl bg-brand-200 dark:bg-slate-700/50"></div>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span class="rounded-xl bg-brand-500/10 px-3 py-1 text-brand-700 ring-1 ring-brand-400/30 dark:text-brand-200">Server Showcase Platzhalter (Bild/Galerie)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold">Warum <span class="text-brand-600">𝓒𝓪𝓷𝓭𝔂 Crimelife?</span>?</h2>
+      <p class="mt-2 text-slate-600 dark:text-slate-400">Entwickelt von Erfahrende FiveM crimelife spieler "#1𝓒𝓪𝓷𝓭𝔂 Crimelife".</p>
+      <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="rounded-2xl border border-brand-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Teamm | Updates</h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Wir suchen derzeit keine neuen Teammitglieder.</p>
+        </div>
+        <div class="rounded-2xl border border-brand-200 bg-white p-6 shadow极 hover:shadow-md transition-shadow dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Crimelife</h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Join unser Server und Steige bis zum ersten Platz auf!!!.</p>
+        </div>
+        <div class="rounded-2xl border border-brand-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Fraktionen | Gangwar</h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">LSMD, LSPD, Justiz, – .</p>
+        </div>
+        <div class="rounded-2xl border border-brand-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Du bist Gebannt?</h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Du kannst dich auf unserem Discord Server comming soon registrieren.</p>
+        </div>
+        <div class="rounded-2xl border border-brand-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Community</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Aktive Moderation, regelmäßige Events und klare Kommunikation.</p>
+        </div>
+        <div class="rounded-2xl border border-brand-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Neue Spieler willkommen</h3>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Einsteiger-Guides, Mentor-Programm & FAQ helfen beim Start.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Announcement / Changelog -->
+  <section class="py-16 border-y border-brand-200 bg-brand-50 dark:border-slate-700 dark:bg-slate-800/50">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-3">
+        <div class="rounded-2xl border border-brand-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Neuigkeiten</h3>
+          <ul class="mt-4 space-y-3 text-sm text-slate-600 dark:text-slate-300" id="newsList">
+            <li>• V1.0</li>
+            <li>
+              <div class="flex items-center gap-2">
+                <span>• Release Sonntag |24.08.2025</span>
+              </div>
+              <!-- Countdown Timer -->
+              <div class="countdown-container" id="countdown">
+                <div class="countdown-item">
+                  <span class="countdown-value" id="days">00</span>
+                  <span class="countdown-label">Tage</span>
+                </div>
+                <div class="countdown-item">
+                  <span class="countdown-value" id="hours">00</span>
+                  <span class="countdown-label">Stunden</span>
+                </div>
+                <div class="countdown-item">
+                  <span class="countdown-value" id="minutes">00</span>
+                  <span class="countdown-label">Minuten</span>
+                </div>
+                <div class="countdown-item">
+                  <span class="countdown-value" id="seconds">00</span>
+                  <span class="countdown-label">Sekunden</span>
+                </div>
+              </div>
+            </li>
+            <li>• Fraktionsbewerbungen geöffnet</li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-brand-200 bg-white p-6 shadow-sm lg:col-span-2 dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Changelog</h3>
+          <div class="mt-4 grid gap-4 md:grid-cols-2">
+            <div class="rounded-xl bg-brand-50 p-4 ring-1 ring-brand-200 dark:bg-slate-700/50 dark:ring-slate-600">
+              <h4 class="text-sm font-semibold text-brand-700">v1.0</h4>
+              <ul class="mt-2 list-disc pl-5 text-sm text-slate-600 dark:text-slate-400">
+                <li>Fix: comming soon</li>
+                <li>Balancing: comming soon</li>
+                <li>Neu: comming soon</li>
+              </ul>
+            </div>
+            <div class="rounded-xl bg-brand-50 p-4 ring-1 ring-brand-200 dark:bg-slate-700/50 dark:ring-slate-600">
+              <h4 class="text-sm font-semibold text-brand-700">v1.0</h4>
+              <ul class="mt-2 list-disc pl-5 text-sm text-slate-600 dark:text-slate-400">
+                <li>Neu: comming soon</li>
+                <li>Verbessert: comming soon</li>
+                <li>QoL: comming soon</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rules -->
+  <section id="rules" class="py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold">Regelwerk</h2>
+      <p class="mt-2 text-slate-600 dark:text-slate-400">Kurzfassung – vollständige Regeln im Discord.</p>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-brand-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Grundlegend</h3>
+          <ul class="mt-3 list-disc pl-5 text-sm text-slate-600 dark:text-slate-400">
+            <li>Kein RDM/VDM, respektvolles RP</li>
+            <li>Kein Rassismus, Diskriminierung, Pornografische Inhalte</li>
+            <li>Kein Stimmverzehr, | Aktive Calls geben und immer drauf achten das andere spieler es mitbekommen haben </li>
+          </ul>
+        </div>
+        <div class="rounded-2xl border border-brand-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Crimelife & Gangwar </h3>
+          <ul class="mt-3 list-disc pl-5 text-sm text-slate-600 dark:text-slate-400">
+            <li>comming soon</li>
+            <li>comming soon</li>
+            <li>comming soon</li>
+          </ul>
+        </div>
+      </div>
+      <a target="_blank" rel="noopener" href="#" id="rulesDiscord" class="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand-500 px-4 py-2 text-sm font-semibold hover:bg-brand-600 transition text-white">
+        Vollständiges Regelwerk im Discord ansehen
+      </a>
+    </div>
+  </section>
+
+  <!-- Whitelist / Bewerbung -->
+  <section id="whitelist" class="py-20 bg-brand-50 border-y border-brand-200 dark:bg-slate-800/50 dark:border-slate-700">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 lg:grid-cols-2 items-start">
+        <div>
+          <h2 class="text-3xl font-bold">1,2,3 und los</h2>
+          <p class="mt-2 text-slate-600 dark:text-slate-400">Join unseren discord server und folge den Schritten.</p>
+          <ol class="mt-6 space-y-3 text-sm text-slate-700 dark:text-slate-300">
+            <li><span class="font-semibold text-brand-600">1.</span> Trete unserem Discord bei.</li>
+            <li><span class="font-semibold text-brand-600">2.</span> Lies Regelwerk & Leitfäden.</li>
+            <li><span class="font-semibold text-brand-600">3.</span> Join den FiveM server.</li>
+            <li><span class="font-semibold text-brand-600">4.</span> mache dir ein skin und spiel los .</li>
+          </ol>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a target="_blank" rel="noopener" href="#" id="applyBtn" class="inline-flex items-center gap-2 rounded-2xl bg-brand-500 px-5 py-3 font-semibold hover:极-brand-600 transition text-white">Jetzt bewerben</a>
+            <a target="_blank" rel="noopener" href="#" id="guideBtn" class="inline-flex items-center gap-2 rounded-2xl bg-white px-5 py-3 font-semibold hover:bg-gray-50 transition shadow-sm text-brand-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-white">Einsteiger-Guide</a>
+          </div>
+        </div>
+        <div class="rounded-3xl border border-brand-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Server Infos</h3>
+          <dl class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <div class="rounded-xl bg-brand-50 p-4 ring-1 ring-brand-200 dark:bg-slate-700/50 dark:ring-slate-600">
+              <dt class="text-xs uppercase text-brand-600">IP</dt>
+              <dd class="font-mono" id="dlIp">—</dd>
+            </div>
+            <div class="rounded-xl bg-brand-50 p-4 ring-1 ring-brand-200 dark:bg-slate-700/50 dark:ring-slate-600">
+              <dt class="text-xs uppercase text-brand-600">Discord</极>
+              <dd class="truncate" id="dlDiscord">—</dd>
+            </div>
+            <div class="rounded-xl bg-brand-50 p-4 ring-1 ring-brand-200 dark:bg-slate-700/50 dark:ring-slate-600">
+              <dt class="text-xs uppercase text-brand-600">Slots</dt>
+              <dd>128 (geplant)</dd>
+            </div>
+            <div class="rounded-xl bg-brand-50 p-4 ring-1 ring-brand-200 dark:bg-slate-700/50 dark:ring-slate-600">
+              <dt class="text-xs uppercase text-brand-600">Restart</dt>
+              <dd>06:00 / 12:00 / 18:00 / 00:00</dd>
+            </div>
+          </dl>
+          <div class="mt-4 text-xs text-brand-500 dark:text-slate-400">Hinweis: Live-Spielerzahl kann via Script oder API ergänzt werden.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team -->
+  <section id="team" class="py-20">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold">Team</h2>
+      <p class="mt-2 text-slate-600 dark:text-slate-400">Führendeleitungsebene.</p>
+      <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <!-- Leon -->
+        <div class="group rounded-2xl border border-brand-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow dark:border-slate-700 dark:bg-slate-800">
+          <div class="flex items-center gap-4">
+            <img src="https://cdn.discordapp.com/attachments/1406203481571983445/1407743862327480421/0c5fy4s.gif?ex=68a888a3&is=68a73723&hm=23ffb782d31d8a03650f20cc9a0ebb389890d10935798f7d04c0ee70becda127&" alt="Leon" class="h-12 w-12 shrink-0 rounded-xl object-cover">
+            <div>
+              <div class="font-semibold text-brand-700">leonbugattii</div>
+              <div class="text-xs text-brand-500 dark:text-slate-400">Projektinhaber</div>
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-400">Inhaber des Projekts.</p>
+        </div>
+  
+        <!-- Slymy -->
+        <div class="group rounded-2xl border border-brand-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow dark:border-slate-700 dark:bg-slate-800">
+          <div class="flex items-center gap-4">
+            <img src="https://cdn.discordapp.com/attachments/1406203481571983445/1407743862327480421/0c5fy4s.gif?ex=68a888a3&is=68a73723&hm=23ffb782d31d8a03650f20cc9a0ebb389890d10935798f7d04c0ee70becda127&" alt="Slymy" class="h-12 w-12 shrink-0 rounded-xl object-cover">
+            <div>
+              <div class="font-semibold text-brand-700">Slymy</div>
+              <div class="text-xs text-brand-500 dark:text-slate-400">Projektinhaber</div>
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-400">Inhaber des Projekts.</p>
+        </div>
+  
+        <!-- Luka -->
+        <div class="group rounded-2xl border border-brand-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow dark:border-slate-700 dark:bg-slate-800">
+          <div class="flex items-center gap-4">
+            <img src="https://cdn.discordapp.com/attachments/1406203481571983445/1407743862327480421/0c5fy4s.gif?ex=68a888a3&is=68a73723&hm=23ffb782d31d8a03650f20cc9a0ebb389890d10935798f7d04c0ee70becda127&" alt="Luka" class="h-12 w-12 shrink-0 rounded-xl object-cover">
+            <div>
+              <div class="font-semibold text-brand-700">LukaBugatti</div>
+              <div class="text-xs text-brand-500 dark:text-slate-400">Stv.Projektinhaber</div>
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-400">Stv.Projektinhaber.</p>
+        </div>
+  
+        <!-- Prime -->
+        <div class="group rounded-2xl border border-brand-200 bg-white p-6 shadow-sm hover:shadow-md transition-shadow dark:border-slate-700 dark:bg-slate-800">
+          <div class="flex items-center gap-4">
+            <img src="https://media.discordapp.net/attachments/1406203481571983445/1407745125706108928/1xZ8anW.gif?ex=68ab2cd0&is=68a9db50&hm=402ea27ea9cc6a57081467a0eff2b8cf8ad499dca1fc6cd4aae3b5be816f0f3c&=&width=231&height=231" alt="Prime" class="h-12 w-12 shrink-0 rounded-xl object-cover">
+            <div>
+              <div class="font-semibold text-brand-700">Prime</div>
+              <div class="text-xs text-brand-500 dark:text-slate-400">Management</div>
+            </div>
+          </div>
+          <p class="mt-3 text-sm text-slate-600 dark:text-slate-400">Eure erste Anlaufstelle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="py-20 bg-brand-50 border-y border-brand-200 dark:bg-slate-800/50 dark:border-slate-700">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <h2 class="text-3xl font-bold">FAQ</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-2">
+        <div class="rounded-2xl border border-brand-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Wie verbinde ich?</h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Klicke auf „Jetzt verbinden“ oder füge die IP <span class="font-mono" id="faqIp">—</span> in FiveM zu Favoriten hinzu.</p>
+        </div>
+        <div class="rounded-2xl border border-brand-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+          <h3 class="font-semibold text-brand-700">Benötige ich eine Microphone?</h3>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-400">Ja, Ohne ein Microphone kannst du nicht spielen.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-10 bg-white dark:bg-slate-800">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-sm text-slate-500 dark:text-slate-400">
+      <div class="flex flex-wrap items-center justify-between gap-3">
+        <div>© <span id="year">2025</span> <span id="footerName">𝓒𝓪𝓷𝓭𝔂 Crimelife</span>. Alle Rechte vorbehalten.</div>
+        <div class="flex items-center gap-4">
+          <a href="#" id="impressumLink" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Impressum</a>
+          <a href="#" id="privacyLink" class="hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Datenschutz</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Initial content from config
+    const ipCombined = `${SERVER_IP}:${SERVER_PORT}`;
+    document.getElementById('navName').textContent = SERVER_NAME;
+    document.getElementById('serverName').textContent = SERVER_NAME;
+    document.getElementById('footerName').textContent = SERVER_NAME;
+    document.getElementById('ipText').textContent = ipCombined;
+    document.getElementById('dlIp').textContent = ipCombined;
+    document.getElementById('faqIp').textContent = ipCombined;
+    document.getElementById('dlDiscord').textContent = DISCORD_INV;
+    document.getElementById('discordLink').href = DISCORD_INV;
+    document.getElementById('rulesDiscord').href = DISCORD_INV;
+    document.getElementById('applyBtn').href = DISCORD_INV;
+    document.getElementById('guideBtn').href = DISCORD_INV;
+
+    // Connect Buttons using FiveM URI
+    const connectUrl = `fivem://connect/${ipCombined}`;
+    document.getElementById('connectBtn').href = connectUrl;
+    document.getElementById('connectBtnHero').href = connectUrl;
+
+    // Copy IP
+    const copyBtn = document.getElementById('copyIp');
+    copyBtn.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(ipCombined);
+      copyBtn.textContent = 'IP kopiert!';
+      setTimeout(() => (copyBtn.textContent = 'IP kopieren'), 1500);
+    });
+
+    // Theme toggle with persistence
+    const root = document.documentElement;
+    const themeToggle = document.getElementById('themeToggle');
+    const moonIcon = document.getElementById('moonIcon');
+    const sunIcon = document.getElementById('sunIcon');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      root.classList.remove('dark');
+      sunIcon.classList.add('hidden');
+      moonIcon.classList.remove('hidden');
+    } else {
+      root.classList.add('dark');
+      sunIcon.classList.remove('hidden');
+      moonIcon.classList.add('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      const isDark = root.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      sunIcon.classList.toggle('hidden');
+      moonIcon.classList.toggle('hidden');
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Countdown Timer
+    function updateCountdown() {
+      // Set the release date (24.08.2025)
+      const releaseDate = new Date('2025-08-24T15:00:00+02:00'); // 3:00 PM German time
+      const now = new Date();
+      
+      // Calculate the difference
+      const diff = releaseDate - now;
+      
+      if (diff <= 0) {
+        // If the release date has passed
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+        return;
+      }
+      
+      // Calculate days, hours, minutes, seconds
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      
+      // Update the countdown display
+      document.getElementById('days').textContent = days.toString().padStart(2, '0');
+      document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+      document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+      document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+    }
+    
+    // Initial update
+    updateCountdown();
+    
+    // Update every second
+    setInterval(updateCountdown, 1000);
+
+    // Optional: Simple uptime status mock (replace with real check/fetch)
+    // fetch('/api/status').then(...)
+  </script>
+</body>
+</html>
